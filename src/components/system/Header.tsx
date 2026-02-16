@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 function Header () {
     return (
-        <View style={{backgroundColor: "#242424", padding: 10}}>
+        <View style={{backgroundColor: "#16161D", padding: 10}}>
             <Logo />
         </View>
     );

@@ -1,5 +1,4 @@
 import solanaRPC from "@/utils/solanaRPC";
-import { Alert } from "react-native";
 
 const solanaService = {
   getBalance: async function (addr: string) {
