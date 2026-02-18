@@ -10,6 +10,7 @@ import TokensList from "@/components/wallet/TokensList";
 import RecentTxnsList from "@/components/wallet/RecentTxnsList";
 import SearchWallet from "@/components/wallet/SearchWallet";
 import Balance from "@/components/wallet/Balance";
+import RecentSearch from "@/components/wallet/RecentSearch";
 
 const s = StyleSheet.create({
     container: {
@@ -71,6 +72,7 @@ export default function Wallet() {
             {/* Search wallet component */}
             <SearchWallet address={address} setAddress={setAddress} loading={loading} search={search} clear={clear} />
 
+            <RecentSearch />
 
             {/* Balance Card */}
             {balance !== null && (
