@@ -33,6 +33,12 @@ export default function TabLayout() {
                             <Ionicons name="swap-vertical" size={size} color={color} />
                         )
                     }} />
+
+                    <Tabs.Screen name="settings" options={{
+                        title: "Settings", tabBarIcon: ({ size, color }) => (
+                            <Ionicons name="settings" size={size} color={color} />
+                        )
+                    }} />
                 </Tabs>
             </View>
         </SafeAreaView>
