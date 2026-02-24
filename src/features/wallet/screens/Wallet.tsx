@@ -11,6 +11,7 @@ import RecentTxnsList from "@/components/wallet/RecentTxnsList";
 import SearchWallet from "@/components/wallet/SearchWallet";
 import Balance from "@/components/wallet/Balance";
 import RecentSearch from "@/components/wallet/RecentSearch";
+import { useWalletStore } from "@/stores/wallet-store";
 
 const s = StyleSheet.create({
     container: {
@@ -18,13 +19,46 @@ const s = StyleSheet.create({
         backgroundColor: "#16161D",
         paddingHorizontal: 15,
         paddingBottom: 20,
+        position: "relative",
+        paddingTop: 40
     },
     scroll: {
-        borderWidth: 5,
-        borderColor: "pink",
         flex: 1,
     },
-    
+    devDot: {
+        height: 12,
+        width: 12,
+        borderRadius: 20,
+        backgroundColor: "orange",
+    },
+    mainDot: {
+        height: 12,
+        width: 12,
+        borderRadius: 20,
+        backgroundColor: "#14F195",
+    },
+    devnetBanner: {
+        backgroundColor: "#33335a",
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+        borderRadius: 16,
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        alignItems: "center",
+        gap: 5,
+        borderWidth: 1,
+        position: "absolute",
+        zIndex: 10,
+        top: 10,
+        right: 15,
+    },
+    devnetText: {
+        color: "#fff",
+        fontSize: 12,
+        fontWeight: 900
+    }
+
 });
 
 export default function Wallet() {
@@ -35,10 +69,16 @@ export default function Wallet() {
     const [tokens, setTokens] = useState<any[]>([]);
     const [txns, setTxns] = useState<any[]>([]);
 
+    // Pick ONLY what you need — component only re-renders when these change
+    const addToHistory = useWalletStore((s) => s.addToHistory);
+    const searchHistory = useWalletStore((s) => s.searchHistory);
+    const isDevnet = useWalletStore((s) => s.isDevnet);
+
     const { getBalance, getTokens, getTxns } = useSolanaService();
 
     const search = async () => {
         const addr = address.trim();
+        addToHistory(addr);
         if (!addr) return Alert.alert("Enter a wallet address");
 
         setLoading(true);
@@ -68,6 +108,13 @@ export default function Wallet() {
 
 
         <View style={s.container}>
+
+            {/* {isDevnet && ( */}
+            <View style={s.devnetBanner}>
+                <View style={false ? s.devDot : s.mainDot}></View>
+                <Text style={s.devnetText}>Devnet</Text>
+            </View>
+            {/* )} */}
 
             {/* Search wallet component */}
             <SearchWallet address={address} setAddress={setAddress} loading={loading} search={search} clear={clear} />

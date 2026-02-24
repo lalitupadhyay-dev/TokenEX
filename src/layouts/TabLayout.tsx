@@ -8,11 +8,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function TabLayout() {
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: "#16161D", borderWidth: 5, borderColor: "yellow" }} edges={["top"]}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "#16161D", }} edges={["top"]}>
 
             <Header />
 
-            <View style={{ flex: 1, borderWidth: 5, borderColor: "red" }}>
+            <View style={{ flex: 1, }}>
                 <Tabs screenOptions={{
                     headerShown: false,
                     tabBarStyle: {
