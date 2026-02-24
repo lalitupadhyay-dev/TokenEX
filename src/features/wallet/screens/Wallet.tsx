@@ -109,12 +109,10 @@ export default function Wallet() {
 
         <View style={s.container}>
 
-            {/* {isDevnet && ( */}
             <View style={s.devnetBanner}>
-                <View style={false ? s.devDot : s.mainDot}></View>
-                <Text style={s.devnetText}>Devnet</Text>
+                <View style={isDevnet ? s.devDot : s.mainDot}></View>
+                <Text style={s.devnetText}>{isDevnet ? "Devnet" : "Mainnet"}</Text>
             </View>
-            {/* )} */}
 
             {/* Search wallet component */}
             <SearchWallet address={address} setAddress={setAddress} loading={loading} search={search} clear={clear} />
